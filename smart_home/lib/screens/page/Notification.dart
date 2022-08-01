@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:smart_home/constants/theme_provider.dart';
 import 'package:smart_home/model/NotificationTiles.dart';
 
+import '../../viewmodel/data_provider.dart';
+
 class NotificationPage extends StatefulWidget {
   const NotificationPage({Key? key}) : super(key: key);
 
@@ -11,6 +13,11 @@ class NotificationPage extends StatefulWidget {
 }
 
 class _NotificationPageState extends State<NotificationPage> {
+
+  @override
+  void initState() {
+    context.read<DataProvider>().fetchApiMessage();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,18 +48,18 @@ class _NotificationPageState extends State<NotificationPage> {
                 height: 1000,
                 child: ListView.separated(
                   padding: const EdgeInsets.all(8),
-                  itemCount: 30,
+                  itemCount: context.watch<DataProvider>().list.length,
                   itemBuilder: (BuildContext context, int index) {
                     return NotificationTiles(
-                      title: 'Cảnh Báo Đột Nhập',
-                      subtitle: 'Phát hiện có người đột nhập',
+                      title: context.watch<DataProvider>().list[index].title,
+                      subtitle: context.watch<DataProvider>().list[index].description,
                       enable: true,
+                        status: context.watch<DataProvider>().list[index].status,
                       onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) => NotificationPage())),
                     );
                   },
-                  separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(),
+                  separatorBuilder: (BuildContext context, int index) => const Divider(),
                 ),
               ),
             ],

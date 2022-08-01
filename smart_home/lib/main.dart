@@ -15,6 +15,7 @@ import 'package:smart_home/screens/page/Home.dart';
 import 'package:smart_home/screens/page/Room.dart';
 import 'package:smart_home/screens/page/StartSplashScreen.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_home/viewmodel/data_provider.dart';
 import 'constants/theme_data.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -59,6 +60,7 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => DataProvider()),
       ],
       child:  MyApp(),
     ),
@@ -82,6 +84,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+
     var initialzationSettingsAndroid =
     AndroidInitializationSettings('@mipmap/ic_launcher');
     var initializationSettings =
@@ -104,9 +107,12 @@ class _MyAppState extends State<MyApp> {
                 icon: android.smallIcon,
               ),
             ));
+
       }
+      context.read<DataProvider>().fetchApiMessage();
     });
     getToken();
+    context.read<DataProvider>().fetchApiMessage();
   }
     // This widget is the root of your application.
     @override
@@ -128,8 +134,8 @@ class _MyAppState extends State<MyApp> {
       setState(() {
         token = token;
       });
-      final DatabaseReference _database = FirebaseDatabase().reference();
-      _database.child('fcm-token/').set({"token": token});
-    }
 
-  }
+      final DatabaseReference _database = FirebaseDatabase().reference();
+      _database.child('fcm-token').set({"token": token});
+    }
+}
