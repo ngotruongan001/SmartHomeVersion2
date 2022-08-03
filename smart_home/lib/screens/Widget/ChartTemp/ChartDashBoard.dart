@@ -2,9 +2,6 @@ import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'dart:math' as math;
-
-
 
 class DashboardScreen extends StatefulWidget {
   // ignore: prefer_const_constructors_in_immutables
@@ -19,13 +16,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
   late ChartSeriesController _chartSeriesController;
 
 
-  var temperature = 0.0;
-  var humidity = 0.0 ;
+  num temperature = 0;
+  num humidity = 0 ;
   @override
   void initState() {
-
     chartData = getChartData();
     Timer.periodic(const Duration(seconds: 1), updateDataSource);
+
     final database = FirebaseDatabase.instance.reference();
     final read = database.child("/ESP32_Device");
     final getTempData = read.child("/Temperature/Data");
@@ -34,14 +31,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
       var value = event.snapshot.value;
       print("temperature}: $value");
       setState(() {
-        temperature = value as double;
+        temperature = value as num;
       });
     });
     getHumiData.onValue.listen((DatabaseEvent event) {
       var value = event.snapshot.value;
       print("humidity}: $value");
       setState(() {
-        humidity = value as double;
+        humidity = value as num;
       });
     });
     super.initState();
@@ -54,27 +51,41 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            body: SfCartesianChart(
-                series: <LineSeries<LiveData, int>>[
-                  LineSeries<LiveData, int>(
-                    onRendererCreated: (ChartSeriesController controller) {
-                      _chartSeriesController = controller;
-                    },
-                    dataSource: chartData,
-                    color: const Color.fromRGBO(192, 108, 132, 1),
-                    xValueMapper: (LiveData sales, _) => sales.time,
-                    yValueMapper: (LiveData sales, _) => sales.speed,
-                  )
-                ],
-                primaryXAxis: NumericAxis(
-                    majorGridLines: MajorGridLines(width: 0),
-                    edgeLabelPlacement: EdgeLabelPlacement.shift,
-                    interval: 3,
-                    title: AxisTitle(text: 'Time (seconds)')),
-                primaryYAxis: NumericAxis(
-                    axisLine: AxisLine(width: 0),
-                    majorTickLines: MajorTickLines(size: 0),
-                    title: AxisTitle(text: 'Internet speed (Mbps)')))));
+            body: Container(
+              width: 400,
+              height: 300,
+              child: SfCartesianChart(
+                backgroundColor: Colors.deepOrangeAccent,
+                  series: <LineSeries<LiveData, int>>[
+                    LineSeries<LiveData, int>(
+                      onRendererCreated: (ChartSeriesController controller) {
+                        _chartSeriesController = controller;
+                      },
+                      dataSource: chartData,
+                      color: const Color.fromRGBO(192, 108, 132, 1),
+                      xValueMapper: (LiveData sales, _) => sales.time,
+                      yValueMapper: (LiveData sales, _) => sales.speed,
+                    ),
+                    LineSeries<LiveData, int>(
+                      onRendererCreated: (ChartSeriesController controller2) {
+                        _chartSeriesController = controller2;
+                      },
+                      dataSource: chartData,
+                      color: const Color.fromRGBO(192, 108, 132, 1),
+                      xValueMapper: (LiveData sales, _) => sales.time,
+                      yValueMapper: (LiveData sales, _) => sales.speed,
+                    )
+                  ],
+                  primaryXAxis: NumericAxis(
+                      majorGridLines: MajorGridLines(width: 0),
+                      edgeLabelPlacement: EdgeLabelPlacement.shift,
+                      interval: 3,
+                      title: AxisTitle(text: 'Time (seconds)')),
+                  primaryYAxis: NumericAxis(
+                      axisLine: AxisLine(width: 0),
+                      majorTickLines: MajorTickLines(size: 0),
+                      title: AxisTitle(text: 'Temperature'))),
+            )));
   }
 
   int time = 19;

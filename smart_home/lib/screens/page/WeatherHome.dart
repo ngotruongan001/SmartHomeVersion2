@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:smart_home/model/weather/forcast.dart';
 import 'package:smart_home/model/weather/location.dart';
 import 'package:smart_home/model/weather/weather.dart';
 import 'package:smart_home/screens/Widget/Weather/currentWeather.dart';

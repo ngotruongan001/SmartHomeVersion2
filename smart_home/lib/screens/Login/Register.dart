@@ -9,9 +9,6 @@ import 'package:smart_home/model/UserModel.dart';
 import 'package:smart_home/model/bottom_bar.dart';
 import 'package:smart_home/screens/Login/Login.dart';
 
-import 'package:smart_home/screens/page/FlashScreen.dart';
-import 'package:smart_home/screens/page/Home.dart';
-
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
 

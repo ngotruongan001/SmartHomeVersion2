@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_home/constants/theme_data.dart';
 import 'package:smart_home/constants/theme_provider.dart';
 import 'package:smart_home/model/FeedbackModel.dart';
 
@@ -16,7 +15,6 @@ class ReportPage extends StatefulWidget {
   State<ReportPage> createState() => _ReportPageState();
 }
 
-//url: https://server-flutter2-ktm.herokuapp.com/
 
 Future<FeedbackModel?> createUser(String description) async {
   const apiUrl =

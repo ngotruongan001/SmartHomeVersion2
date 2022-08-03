@@ -111,7 +111,7 @@ class _ProfileState extends State<Profile> {
                         const SizedBox(width: 20),
                          Expanded(
                             child: Text(
-                                "Chế Độ Tối",
+                                "Dark Mode",
                                 style: TextStyle(
                                   fontSize: 15.0,
                                   color: context.watch<ThemeProvider>().textColor,
@@ -137,7 +137,7 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 ProfileMenu(
-                  text: "Chỉnh sửa thông tin",
+                  text: "Edit information",
                   icon: "assets/icons/people.svg",
                   press: () => {
                     Navigator.push(
@@ -147,12 +147,12 @@ class _ProfileState extends State<Profile> {
                   },
                 ),
                 ProfileMenu(
-                  text: "Cài đặt",
+                  text: "Setting",
                   icon: "assets/icons/settings.svg",
                   press: () {},
                 ),
                 ProfileMenu(
-                  text: "Phản hồi",
+                  text: "Feedback",
                   icon: "assets/icons/feedback.svg",
                   press: () {
                     Navigator.push(
@@ -162,7 +162,7 @@ class _ProfileState extends State<Profile> {
                   },
                 ),
                 ProfileMenu(
-                  text: "Đăng xuất",
+                  text: "Logout",
                   icon: "assets/icons/logout.svg",
                   press: () {
                     logout(context);
@@ -175,7 +175,6 @@ class _ProfileState extends State<Profile> {
       ),
     );
   }
-
   Future<void> logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
     await FacebookAuth.i.logOut();

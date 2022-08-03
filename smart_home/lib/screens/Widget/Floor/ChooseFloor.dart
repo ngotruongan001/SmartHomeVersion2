@@ -36,7 +36,7 @@ class _ChooseFloorState extends State<ChooseFloor> {
               ),
               width: 80,
               child: Text(
-                "Tầng 1",
+                "Floor 1",
                 style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,
                   color: widget.setId == 0?  context.watch<ThemeProvider>().textClickColor:  context.watch<ThemeProvider>().textNonClickColor,
                 ),
@@ -59,7 +59,7 @@ class _ChooseFloorState extends State<ChooseFloor> {
               ),
               width: 80,
               child: Text(
-                "Tầng 2",
+                "Floor 2",
                 style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,
                     color: widget.setId == 1? context.watch<ThemeProvider>().textClickColor:   context.watch<ThemeProvider>().textNonClickColor),
               ),
@@ -80,7 +80,7 @@ class _ChooseFloorState extends State<ChooseFloor> {
               ),
               width: 80,
               child: Text(
-                "Tầng 3",
+                "Floor 3",
                 style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold
                     ,  color: widget.setId == 2?  context.watch<ThemeProvider>().textClickColor:   context.watch<ThemeProvider>().textNonClickColor),
               ),

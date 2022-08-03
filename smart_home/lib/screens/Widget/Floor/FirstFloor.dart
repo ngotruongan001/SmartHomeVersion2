@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_home/screens/Widget/Floor/CardRoom.dart';
 
-import 'package:smart_home/screens/page/Room.dart';
-
 class FirstFloor extends StatefulWidget {
   const FirstFloor({Key? key}) : super(key: key);
 
@@ -60,7 +58,6 @@ class _FirstFloorState extends State<FirstFloor> {
       'floor': 1
     },
   ];
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -80,14 +77,6 @@ class _FirstFloorState extends State<FirstFloor> {
                   floor:  e['floor'].toString()
               )
           ).toList()
-
-        // <Widget>[
-        //   CardRoom(title: "Living Room",temperature: temperature,humidity: humidity,image: 'assets/images/livingroom.jpg', floor: 1),
-        //   CardRoom(title: "Kitchen Room",temperature: temperature,humidity: humidity,image: 'assets/images/kitchenroom.jpg', floor: 1),
-        //   CardRoom(title: "Bed Room" ,temperature: temperature,humidity: humidity,image: 'assets/images/bedroom.jpg', floor: 1),
-        //   CardRoom(title: "Living Room",temperature: temperature,humidity: humidity,image: 'assets/images/livingroom.jpg', floor: 1),
-        //
-        // ],
       ),
     );
   }

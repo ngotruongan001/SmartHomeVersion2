@@ -21,7 +21,6 @@ class _DarshBoardFirstFloorState extends State<DarshBoardFirstFloor> {
   @override
   Widget build(BuildContext context) {
     return Container(
-     
       margin: EdgeInsets.only(top: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

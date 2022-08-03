@@ -6,7 +6,6 @@ import 'package:smart_home/model/UserProfileModel.dart';
 import 'package:smart_home/model/bottom_bar.dart';
 import 'package:smart_home/screens/Widget/Profile/user_image.dart';
 
-
 class CreateProflieScreen extends StatefulWidget {
   const CreateProflieScreen({Key? key}) : super(key: key);
 

@@ -1,6 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -9,15 +7,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home/auth/auth_service.dart';
-import 'package:smart_home/auth/twitter_auth_service.dart';
 import 'package:smart_home/constants/theme_provider.dart';
-
-import 'package:smart_home/model/bottom_bar.dart';
 import 'package:smart_home/screens/Login/ForgotPassword.dart';
 import 'package:smart_home/screens/Login/Register.dart';
-
 import 'package:smart_home/screens/page/FlashScreen.dart';
-import 'package:smart_home/screens/page/Home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -29,8 +22,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   Map? _userData;
   late String email, pass;
-
-
 
   final _formKey = GlobalKey<FormState>();
 
@@ -64,10 +55,12 @@ class _LoginPageState extends State<LoginPage> {
         onSaved: (value) {
           emailController.text = value!;
         },
-
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.mail,color: Colors.deepOrange,),
+          prefixIcon: const Icon(
+            Icons.mail,
+            color: Colors.deepOrange,
+          ),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Email",
           border: OutlineInputBorder(
@@ -97,7 +90,10 @@ class _LoginPageState extends State<LoginPage> {
         },
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.vpn_key, color: Colors.deepOrange,),
+          prefixIcon: const Icon(
+            Icons.vpn_key,
+            color: Colors.deepOrange,
+          ),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
           border: OutlineInputBorder(
@@ -106,10 +102,13 @@ class _LoginPageState extends State<LoginPage> {
           ),
           fillColor: Colors.deepOrange[100],
           filled: true,
-          suffixIcon: const Icon(Icons.remove_red_eye, color: Colors.deepOrange,),
+          suffixIcon: const Icon(
+            Icons.remove_red_eye,
+            color: Colors.deepOrange,
+          ),
         ));
 
-    final loginButton =  FlatButton(
+    final loginButton = FlatButton(
         onPressed: () {
           print(emailController.text);
           signIn(emailController.text, passwordController.text);
@@ -135,8 +134,6 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ));
-
-
 
     Size size = MediaQuery.of(context).size;
 
@@ -188,16 +185,13 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.1, vertical: 10),
-                child: emailField
-              ),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.1, vertical: 10),
+                  child: emailField),
               Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.1, vertical: 10),
-                child: passwordField
-
-              ),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.1, vertical: 10),
+                  child: passwordField),
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: size.width * 0.1, vertical: 5),
@@ -209,7 +203,8 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const ForgotPassword()));
+                                  builder: (context) =>
+                                      const ForgotPassword()));
                         },
                         child: const Text(
                           " Forgot Password?",
@@ -222,11 +217,10 @@ class _LoginPageState extends State<LoginPage> {
                     ]),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.1, vertical: 20),
-                child: loginButton
-              ),
-               Center(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.1, vertical: 20),
+                  child: loginButton),
+              Center(
                 child: Text(
                   "OR",
                   style: TextStyle(
@@ -243,20 +237,19 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     GestureDetector(
                       onTap: () async {
-                        final result = await FacebookAuth.i.login(
-                          permissions: ["public_profile", "email"]
-                        );
+                        final result = await FacebookAuth.i
+                            .login(permissions: ["public_profile", "email"]);
                         if (result.status == LoginStatus.success) {
-                          final requestData = await FacebookAuth.i.getUserData(
-                            fields: "email, name"
-                          );
+                          final requestData = await FacebookAuth.i
+                              .getUserData(fields: "email, name");
                           setState(() {
                             _userData = requestData;
                           });
                         }
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => FlashScreen()));
-
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FlashScreen()));
                       },
                       child: SizedBox(
                           height: 80,
@@ -279,8 +272,10 @@ class _LoginPageState extends State<LoginPage> {
                     GestureDetector(
                       onTap: () async {
                         await FirebaseServices().signInWithGoogle();
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => FlashScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FlashScreen()));
                       },
                       child: Container(
                           decoration: const BoxDecoration(),
@@ -298,12 +293,11 @@ class _LoginPageState extends State<LoginPage> {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                       Text(
+                      Text(
                         "Do not have an account?",
                         style: TextStyle(
-                          fontSize: 15,
-                            color: context.watch<ThemeProvider>().textColor
-                        ),
+                            fontSize: 15,
+                            color: context.watch<ThemeProvider>().textColor),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -315,9 +309,9 @@ class _LoginPageState extends State<LoginPage> {
                         child: const Text(
                           " Sign Up",
                           style: TextStyle(
-                              color: Colors.redAccent,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                            color: Colors.redAccent,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
                           ),
                         ),
                       )
@@ -328,21 +322,18 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     ));
-
-
-
   }
+
   void signIn(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       try {
         await _auth
             .signInWithEmailAndPassword(email: email, password: password)
             .then((uid) => {
-
-          Fluttertoast.showToast(msg: "Đăng nhập thành công"),
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => FlashScreen())),
-        });
+                  Fluttertoast.showToast(msg: "Đăng nhập thành công"),
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => FlashScreen())),
+                });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
           case "invalid-email":
@@ -390,7 +381,4 @@ class DrawClip extends CustomClipper<Path> {
   bool shouldReclip(covariant CustomClipper<Path> oldCliper) {
     return true;
   }
-
-
 }
-

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-
 import 'package:smart_home/constants/theme_provider.dart';
 import 'package:smart_home/screens/page/DashBoard.dart';
 import 'package:smart_home/screens/page/Home.dart';
@@ -49,7 +49,7 @@ class _MyHomePageState extends State<BottomBar> {
           MaterialPageRoute(
               builder: (context) =>  WeatherHome()));
         },
-        child: Icon(Icons.cloud),
+        child: Lottie.asset('assets/json/weather.json'),
         backgroundColor: context.watch<ThemeProvider>().bubblebackgroundColor,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
@@ -91,7 +91,7 @@ class _MyHomePageState extends State<BottomBar> {
                 Icons.app_shortcut_sharp,
                 color: context.watch<ThemeProvider>().bubbleBottomBarIcon,
               ),
-              title: Text("Device")),
+              title: Text("Dashboard")),
           BubbleBottomBarItem(
             // showBadge: true,
             // badge: Text("5"),

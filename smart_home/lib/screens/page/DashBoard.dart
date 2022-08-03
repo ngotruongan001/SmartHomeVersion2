@@ -1,11 +1,10 @@
 import 'dart:async';
-
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home/constants/theme_provider.dart';
+import 'package:smart_home/screens/Widget/ChartTemp/TempHumiChart.dart';
 import 'package:smart_home/screens/Widget/DashBoard/DarshBoard_FirstFloor.dart';
 import 'package:smart_home/screens/Widget/DashBoard/DarshBoard_SecondFloor.dart';
 import 'package:smart_home/screens/Widget/DashBoard/DarshBoard_ThirdFloor.dart';
@@ -271,12 +270,40 @@ class _DashBoardState extends State<DashBoard> {
                     children: [
                       ChooseFloor(handleClick: handleClick, setId: setId),
                       _page[setId],
+
                       const SizedBox(
                         height: 20,
                       ),
                       const SizedBox(
                         height: 20,
                       ),
+
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: context.watch<ThemeProvider>().cardDashBoard,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          spreadRadius: 2,
+                          blurRadius: 2,
+                          offset: const Offset(0, 1), // changes position of shadow
+                        )
+                      ]
+                  ),
+                  child: Column(
+                    children: [
+
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TempHumiChart(),
                     ],
                   ),
                 ),

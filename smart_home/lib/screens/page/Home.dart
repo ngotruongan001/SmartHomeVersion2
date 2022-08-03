@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home/constants/theme_provider.dart';
 import 'package:smart_home/model/RoomCart.dart';
@@ -176,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Container(
                           margin: const EdgeInsets.only(
                               left: 8, right: 8, top: 8, bottom: 8),
-                          child:  Text("Thời Tiết",
+                          child:  Text("Weather",
                               style: TextStyle(
                                   fontSize: 23,
                                   fontWeight: FontWeight.bold,
@@ -187,7 +185,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Container(
                           margin:  EdgeInsets.only(
                               left: 8, right: 8, top: 0, bottom: 0),
-                          child:  Text("Nhiệt Độ: ${temp.toInt()}°C",
+                          child:  Text("Temperature: ${temp.toInt()}°C",
                               style: TextStyle(
                                 fontSize: 16,
                                   color: context.watch<ThemeProvider>().textColor
@@ -196,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Container(
                           margin: const EdgeInsets.only(
                               left: 8, right: 8, top: 8, bottom: 8),
-                          child:  Text("Độ Ẩm: ${humi.toInt()}%",
+                          child:  Text("Humidity: ${humi.toInt()}%",
                               style: TextStyle(
                                 fontSize: 16,
                                   color: context.watch<ThemeProvider>().textColor
@@ -209,7 +207,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         const SizedBox(
                           height: 15,
                         ),
-
                         getWeatherIcon(icon),
                         Container(
                           margin: const EdgeInsets.only(

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class RoomCart {
   var id;
   var icon;

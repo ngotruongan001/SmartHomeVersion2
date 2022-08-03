@@ -26,7 +26,6 @@ class ThemeProvider extends ChangeNotifier {
   Color? backgroundWeather = Colors.grey[100];
   Color backgroundFeedback = Colors.white;
 
-
   Color getColor() {
     return pageBackgroundColor;
   }

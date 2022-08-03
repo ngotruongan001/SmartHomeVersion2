@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:smart_home/main.dart';
 import 'package:smart_home/model/bottom_bar.dart';
 
 class FlashScreen extends StatefulWidget {

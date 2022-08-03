@@ -41,37 +41,6 @@ class CustomColors extends ChangeNotifier {
     mainBgHome = _check;
     notifyListeners();
   }
-//
-// getValue() async {
-//   prefs = await _prefs;
-//   bool? mainBgHome = prefs.containsKey("switchValue");
-//   if(mainBgHome == null){
-//     mainBgHome = false;
-//   }else{
-//     mainBgHome = true;
-//   }
-//   if(mainBgHome){
-//     pageBackgroundColor = Color(0xFF242634);
-//     primaryTextColor = Colors.white;
-//     dividerColor = Colors.white54;
-//
-//     clockOutline = const Color(0xFFEAECFF);
-//     secHandColor = Colors.orange[300];
-//
-//   }else{
-//     pageBackgroundColor = Colors.white;
-//     primaryTextColor = const Color(0xFF2D2F41);
-//     dividerColor = Colors.black54;
-//
-//     clockBG = const Color(0xFF444974);
-//     clockOutline = const Color(0xFF242634);
-//
-//
-//   }
-//   print(mainBgHome);
-//   notifyListeners();
-// }
-
 }
 
 class GradientColors {
